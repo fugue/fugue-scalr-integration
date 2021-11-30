@@ -1,0 +1,1 @@
+If you're interested in using Fugue to check your IaC files, please reach out to sales@fugue.co
