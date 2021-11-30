@@ -1,0 +1,12 @@
+environment-id: ""
+exclude: []
+format: text
+include:
+- waivers.rego
+input-type:
+- auto
+no-built-ins: false
+no-ignore: false
+only: []
+severity: unknown
+sync: false
