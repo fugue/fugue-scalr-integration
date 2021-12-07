@@ -58,7 +58,7 @@ terraform validate
 When I try to run...
 ```
 git add <files>
-git commit -m "initiating the scalr terraform pipeline
+git commit -m "initiating the scalr terraform pipeline"
 git push
 ```
 ...Scalr will detect that I have commited changes to my repository, and will call Regula to scan my IaC for security and compliance issues:
@@ -86,7 +86,7 @@ This is a cool terraform feature that will automatically fix formatting issues (
 I'll re-run the commands I ran initially...
 ```
 git add <files>
-git commit -m "initiating the scalr terraform pipeline
+git commit -m "initiating the scalr terraform pipeline"
 git push
 ```
 ...resulting in a successful build:
