@@ -15,7 +15,7 @@ Pair Regula's powerful, easy-to-use IaC scanning capabilities and Scalr's terraf
 ### Preparation
 I started by signing up for a [free Scalr trial account](https://scalr.io/#/public/signup). Upon request, Scalr was kind enough to grant me trial access to the premium [Custom Hooks](https://docs.scalr.com/en/latest/workspaces.html#custom-hooks) feature, which allowed me to customize my terraform workflow. Next, I created a [workspace](https://docs.scalr.com/en/latest/workspaces.html#create-workspace), added my [AWS credentials](https://docs.scalr.com/en/latest/cloud_credentials.html#provider-credentials) (very convenient not to have to include these in my terraform `.gitignore` file and instead have Scalr automate the authentication with AWS), and added a version control system (VCS) [provider](https://docs.scalr.com/en/latest/vcs_providers.html#vcs-providers) (I used GitHub). Finally, I downloaded the latest version of Regula from the [Regula GitHub repository](https://github.com/fugue/regula/releases) (use the Linux x86_64 release for compatability with Scalr). If you want to follow along, you can clone my repository:
 
-```git clone https://github.com/aidan-fugue/fugue-scalr-integration.git```
+```git clone https://github.com/fugue/fugue-scalr-integration.git```
 
 The final step in preparation is assigning the `before-plan.bash` and `after-plan.bash` as the pre and post `terraform plan` custom hooks.
 This way, whenever I commit and push a new version of my infrastructure to my GitHub repostory, Scalr will automatically trigger the standard terraform build with the addition of my customizations.
