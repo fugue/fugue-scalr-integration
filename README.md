@@ -7,7 +7,7 @@
 Regula is an open source project maintained by [Fugue](https://www.fugue.co/) engineers.
 
 #### Scalr
-[Scalr](https://www.scalr.com/home-navattic) is a remote state & operations backend for terraform with full CLI support, integration with OPA, a hierarchical configuration model, and quality of life features.
+[Scalr](https://www.scalr.com/) is a remote state & operations backend for terraform with full CLI support, integration with OPA, a hierarchical configuration model, and quality of life features.
 
 ### Goal
 Pair Regula's powerful, easy-to-use IaC scanning capabilities and Scalr's terraform automation and collaboration capabilities to automate the *secure* deployment of cloud infrastructure with terraform.
