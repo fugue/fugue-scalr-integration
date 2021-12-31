@@ -13,12 +13,12 @@ Regula is an open source project maintained by [Fugue](https://www.fugue.co/) en
 Pair Regula's powerful, easy-to-use IaC scanning capabilities and Scalr's terraform automation and collaboration capabilities to automate the *secure* deployment of cloud infrastructure with terraform.
 
 ### Preparation
-I started by signing up for a [free Scalr trial account](https://scalr.io/#/public/signup). Upon request, Scalr was kind enough to grant me trial access to the premium [Custom Hooks](https://docs.scalr.com/en/latest/workspaces.html#custom-hooks) feature, which allowed me to customize my terraform workflow. Next, I created a [workspace](https://docs.scalr.com/en/latest/workspaces.html#create-workspace), added my [AWS credentials](https://docs.scalr.com/en/latest/cloud_credentials.html#provider-credentials) (very convenient not to have to include these in my terraform `.gitignore` file and instead have Scalr automate the authentication with AWS), and added a version control system (VCS) [provider](https://docs.scalr.com/en/latest/vcs_providers.html#vcs-providers) (I used GitHub). Finally, I downloaded the latest version of Regula from the [Regula GitHub repository](https://github.com/fugue/regula/releases) (use the Linux x86_64 release for compatability with Scalr). If you want to follow along, you can clone my repository:
+I started by signing up for a [free Scalr trial account](https://scalr.io/#/public/signup). Upon request, Scalr was kind enough to grant me trial access to the premium [Custom Hooks](https://docs.scalr.com/en/latest/workspaces.html#custom-hooks) feature, which allowed me to customize my terraform workflow. Next, I created a [workspace](https://docs.scalr.com/en/latest/workspaces.html#create-workspace), added my [AWS credentials](https://docs.scalr.com/en/latest/cloud_credentials.html#provider-credentials) (very convenient not to have to include these in my terraform `.gitignore` file and instead have Scalr automate the authentication with AWS), and added a version control system (VCS) [provider](https://docs.scalr.com/en/latest/vcs_providers.html#vcs-providers) (I used GitHub). Finally, I downloaded the latest version of Regula from the [Regula GitHub repository](https://github.com/fugue/regula/releases) (use the Linux x86_64 release for compatibility with Scalr). If you want to follow along, you can clone my repository:
 
 ```git clone https://github.com/fugue/fugue-scalr-integration.git```
 
 The final step in preparation is assigning the `before-plan.bash` and `after-plan.bash` as the pre and post `terraform plan` custom hooks.
-This way, whenever I commit and push a new version of my infrastructure to my GitHub repostory, Scalr will automatically trigger the standard terraform build with the addition of my customizations.
+This way, whenever I commit and push a new version of my infrastructure to my GitHub repository, Scalr will automatically trigger the standard terraform build with the addition of my customizations.
 
 ### What's in the repo?
 ![file structure](/img/tree.png "file structure")   
@@ -69,8 +69,8 @@ git push
 
 Now that I know I have misconfigurations in my terraform files, I can go back into my repo in VSCode and execute a `regula run` locally to address those issues.
 Alternatively, I could export the output of the `regula run` that occurred in my Scalr run.
-I set up this repository to allow me to un-comment my terraform code corrections easily, but properly configuring your infrasructure is as easy as clicking the hyperlink that populates with every rule following a `regula run`.
-See below for how I fixed Fugue rules `FG_R00036` and `FG_R00101`, then re-checked my infrasructure with a final `regula run`.
+I set up this repository to allow me to un-comment my terraform code corrections easily, but properly configuring your infrastructure is as easy as clicking the hyperlink that populates with every rule following a `regula run`.
+See below for how I fixed Fugue rules `FG_R00036` and `FG_R00101`, then re-checked my infrastructure with a final `regula run`.
 
 ![fixing regula issues](/img/fixing_issues.gif "fixing issues")
 
@@ -94,3 +94,5 @@ git push
 ![successful build](/img/successful_build.gif "successful build")
 
 And that's it! Now we have a Regula/Scalr pipeline to securely automate the deployment of cloud infrastructure using terraform.
+
+
