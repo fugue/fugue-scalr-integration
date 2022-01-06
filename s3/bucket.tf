@@ -1,11 +1,8 @@
 /*
-This is a Terraform template that stands up Google Cloud Resources.
-Aidan OConnor, 20211215
+This is a Terraform file to stand up an AWS S3 bucket and logging bucket
 */
 
-########################################################
-# Setting up the demos3 bucket
-########################################################
+// Setting up the demos3 bucket
 
 #Adding the demos3 bucket
 resource "aws_s3_bucket" "demos3" {
@@ -91,9 +88,7 @@ resource "aws_s3_bucket_policy" "b" {
   })
 }
 
-########################################################
-# Setting up my logging bucket for my demos3 bucket
-########################################################
+// Setting up my logging bucket for my demos3 bucket
 
 #Logging bucket for my demos3 bucket
 resource "aws_s3_bucket" "logbucket" {
@@ -174,9 +169,7 @@ resource "aws_s3_bucket_public_access_block" "private23456" {
   restrict_public_buckets = true
 }
 
-########################################################
-# Setting up my kms key
-########################################################
+// Setting up my kms key
 
 #Setting a kms key for my S3 bucket
 resource "aws_kms_key" "mykey" {
