@@ -1,4 +1,7 @@
-#S3 Bucket Terraform File
+/*
+This is a Terraform template that stands up Google Cloud Resources.
+Aidan OConnor, 20211215
+*/
 
 ########################################################
 # Setting up the demos3 bucket
