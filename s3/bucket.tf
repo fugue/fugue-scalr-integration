@@ -1,15 +1,14 @@
-/*
-This is a Terraform file to stand up an AWS S3 bucket and logging bucket
-*/
+provider "aws" {
+  region = "us-east-1"
+}
+//#S3 Bucket Terraform File
 
-// Setting up the demos3 bucket
-
-#Adding the demos3 bucket
+//Adding the demos3 bucket
 resource "aws_s3_bucket" "demos3" {
   bucket = "my-scalr-fugue-test-bucket-27311812"
   acl    = var.acl_value
 
-  #FG_R00274
+  //FG_R00274
   logging {
     target_bucket = aws_s3_bucket.logbucket.id
     target_prefix = "log/"
@@ -18,16 +17,15 @@ resource "aws_s3_bucket" "demos3" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        #Un-comment below to satisfy FG_R00099
-        #kms_master_key_id = aws_kms_key.mykey.arn
+        //Un-comment below to satisfy FG_R00099
+        kms_master_key_id = aws_kms_key.mykey.arn
         sse_algorithm     = "aws:kms"
       }
     }
   }
   versioning {
-    #Un-comment below to satisfy FG_R00101
-    #enabled = true
-    enabled = false
+    //Un-comment below to satisfy FG_R00101
+    enabled = true
   }
 
   lifecycle_rule {
@@ -50,20 +48,20 @@ resource "aws_s3_bucket" "demos3" {
   }
 }
 
-#Blocking public access for my S3 bucket
+//Blocking public access for my S3 bucket
 resource "aws_s3_bucket_public_access_block" "private12345" {
-  # Un-comment below to satisfy FG_R00229
-  #bucket                  = aws_s3_bucket.demos3.id
+  //Un-comment below to satisfy FG_R00229
+  bucket                  = aws_s3_bucket.demos3.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
 
-#Setting up a bucket policy for my demos3 bucket
+//Setting up a bucket policy for my demos3 bucket
 resource "aws_s3_bucket_policy" "b" {
-  #Un-comment below to satisfy FG_R00100
-  #bucket = aws_s3_bucket.demos3.id
+  //Un-comment below to satisfy FG_R00100
+  bucket = aws_s3_bucket.demos3.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -90,7 +88,7 @@ resource "aws_s3_bucket_policy" "b" {
 
 // Setting up my logging bucket for my demos3 bucket
 
-#Logging bucket for my demos3 bucket
+//Logging bucket for my demos3 bucket
 resource "aws_s3_bucket" "logbucket" {
   bucket = "my-log-bucket-for-demos3-18122617"
   acl    = "log-delivery-write"
@@ -98,17 +96,16 @@ resource "aws_s3_bucket" "logbucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        #Un-comment below to satisfy FG_R00099
-        #kms_master_key_id = aws_kms_key.mykey.arn
+        //Un-comment below to satisfy FG_R00099
+        kms_master_key_id = aws_kms_key.mykey.arn
         sse_algorithm     = "aws:kms"
       }
     }
   }
 
   versioning {
-    #Un-comment below to satisfy FG_R00101
-    #enabled = true
-    enabled = false
+    //Make below = true to satisfy FG_R00101
+    enabled = true
   }
 
   lifecycle_rule {
@@ -131,10 +128,10 @@ resource "aws_s3_bucket" "logbucket" {
   }
 }
 
-#Setting up a bucket policy for my logbucket
+//Setting up a bucket policy for my logbucket
 resource "aws_s3_bucket_policy" "b1" {
-  #Un-comment below to satisfy FG_R00100
-  #bucket = aws_s3_bucket.logbucket.id
+  //Un-comment below to satisfy FG_R00100
+  bucket = aws_s3_bucket.logbucket.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -159,10 +156,10 @@ resource "aws_s3_bucket_policy" "b1" {
   })
 }
 
-#Blocking public access for my logging bucket
+//Blocking public access for my logging bucket
 resource "aws_s3_bucket_public_access_block" "private23456" {
-  # Un-comment below to satisfy FG_R00229
-  #bucket                  = aws_s3_bucket.logbucket.id
+  //Un-comment below to satisfy FG_R00229
+  bucket                  = aws_s3_bucket.logbucket.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -171,8 +168,8 @@ resource "aws_s3_bucket_public_access_block" "private23456" {
 
 // Setting up my kms key
 
-#Setting a kms key for my S3 bucket
+//Setting a kms key for my S3 bucket
 resource "aws_kms_key" "mykey" {
-  #Un-comment below to satisfy FG_R00036
-  #enable_key_rotation = true
+  //Make below = true to satisfy FG_R00036
+  enable_key_rotation = true
 }
