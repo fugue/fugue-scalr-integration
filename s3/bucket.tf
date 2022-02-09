@@ -18,14 +18,14 @@ resource "aws_s3_bucket" "demos3" {
     rule {
       apply_server_side_encryption_by_default {
         //Un-comment below to satisfy FG_R00099
-        kms_master_key_id = aws_kms_key.mykey.arn
-        sse_algorithm     = "aws:kms"
+        #kms_master_key_id = aws_kms_key.mykey.arn
+        #sse_algorithm     = "aws:kms"
       }
     }
   }
   versioning {
     //Un-comment below to satisfy FG_R00101
-    enabled = true
+    #enabled = true
   }
 
   lifecycle_rule {
@@ -51,7 +51,7 @@ resource "aws_s3_bucket" "demos3" {
 //Blocking public access for my S3 bucket
 resource "aws_s3_bucket_public_access_block" "private12345" {
   //Un-comment below to satisfy FG_R00229
-  bucket                  = aws_s3_bucket.demos3.id
+  #bucket                  = aws_s3_bucket.demos3.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -61,7 +61,7 @@ resource "aws_s3_bucket_public_access_block" "private12345" {
 //Setting up a bucket policy for my demos3 bucket
 resource "aws_s3_bucket_policy" "b" {
   //Un-comment below to satisfy FG_R00100
-  bucket = aws_s3_bucket.demos3.id
+  #bucket = aws_s3_bucket.demos3.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -131,7 +131,7 @@ resource "aws_s3_bucket" "logbucket" {
 //Setting up a bucket policy for my logbucket
 resource "aws_s3_bucket_policy" "b1" {
   //Un-comment below to satisfy FG_R00100
-  bucket = aws_s3_bucket.logbucket.id
+  #bucket = aws_s3_bucket.logbucket.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -159,7 +159,7 @@ resource "aws_s3_bucket_policy" "b1" {
 //Blocking public access for my logging bucket
 resource "aws_s3_bucket_public_access_block" "private23456" {
   //Un-comment below to satisfy FG_R00229
-  bucket                  = aws_s3_bucket.logbucket.id
+  #bucket                  = aws_s3_bucket.logbucket.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -171,5 +171,5 @@ resource "aws_s3_bucket_public_access_block" "private23456" {
 //Setting a kms key for my S3 bucket
 resource "aws_kms_key" "mykey" {
   //Make below = true to satisfy FG_R00036
-  enable_key_rotation = true
+  #enable_key_rotation = true
 }
